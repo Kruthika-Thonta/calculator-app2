@@ -53,23 +53,23 @@ pipeline {
             }
         }
 
-        
-
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                
+                # First apply deployment and service
+                kubectl apply -f k8s/deployment.yaml
+                kubectl apply -f k8s/service.yaml
 
-                # Replace image tag inside deployment.yaml
+                # Then update image
                 kubectl set image deployment/my-k8s-app-deployment \
                 my-k8s-app=$DOCKER_IMAGE:$IMAGE_TAG
 
-                # Apply Kubernetes files
-                kubectl apply -f k8s/deployment.yaml
-                kubectl apply -f k8s/service.yaml
+                # Wait for rollout
                 kubectl rollout status deployment/my-k8s-app-deployment
                 '''
             }
         }
+
+        
     }
 }
