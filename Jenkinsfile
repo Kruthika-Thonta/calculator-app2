@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout from GitHub') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/Kruthika-Thonta/calculator-app.git'
+                    url: 'https://github.com/Kruthika-Thonta/calculator-app2.git'
             }
         }
 
