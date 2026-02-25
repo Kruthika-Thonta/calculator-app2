@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "kruthi2008/my-k8s-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
     stages {
@@ -57,6 +58,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
+                
+
                 # Replace image tag inside deployment.yaml
                 kubectl set image deployment/my-k8s-app-deployment \
                 my-k8s-app=$DOCKER_IMAGE:$IMAGE_TAG
