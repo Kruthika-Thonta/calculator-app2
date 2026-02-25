@@ -55,7 +55,7 @@ pipeline {
         stage('Start Minikube (if not running)') {
             steps {
                 sh '''
-                minikube status || minikube start
+                minikube start --driver=docker --force
                 '''
             }
         }
