@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "kruthi2008/my-k8s-app"
+        DOCKER_IMAGE = "kruthi2008/my-k8s-app2"
         IMAGE_TAG = "${BUILD_NUMBER}"
         KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
@@ -64,8 +64,7 @@ pipeline {
                 kubectl set image deployment/my-k8s-app-deployment \
                 my-k8s-app=$DOCKER_IMAGE:$IMAGE_TAG
 
-                kubectl get nodes
-
+                
                 # Wait for rollout
                 kubectl rollout status deployment/my-k8s-app-deployment
                 '''

@@ -9,5 +9,5 @@ COPY node_modules ./node_modules
 # Copy rest of the source code
 COPY . .
 
-CMD ["npm", "start"]
+CMD ["node", "app.js"]
 
