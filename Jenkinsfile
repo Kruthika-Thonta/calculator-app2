@@ -64,6 +64,8 @@ pipeline {
                 kubectl set image deployment/my-k8s-app-deployment \
                 my-k8s-app=$DOCKER_IMAGE:$IMAGE_TAG
 
+                kubectl get nodes
+
                 # Wait for rollout
                 kubectl rollout status deployment/my-k8s-app-deployment
                 '''
